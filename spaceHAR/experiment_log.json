@@ -1,0 +1,19 @@
+{
+    "experiment_start": "2026-09-13T20:42:03.910873",
+    "events": [
+        {
+            "timestamp": "2026-09-13T20:48:09",
+            "detected_activity": "person_present",
+            "expected_activity": "pick_sample",
+            "status": "out_of_sequence",
+            "message": "Out-of-sequence activity. Expected pick_sample."
+        },
+        {
+            "timestamp": "2026-09-13T20:55:06",
+            "detected_activity": "person_present",
+            "expected_activity": "pick_sample",
+            "status": "out_of_sequence",
+            "message": "Out-of-sequence activity. Expected pick_sample."
+        }
+    ]
+}

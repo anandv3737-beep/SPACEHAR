@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SpaceHAR | Mission Control</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ✦
+            </div>
+
+            <div>
+
+                <h1>SpaceHAR</h1>
+
+                <span>
+                    MISSION AI
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="mission-status">
+
+            <span class="pulse"></span>
+
+            <div>
+
+                <strong>
+                    MISSION SYSTEM
+                </strong>
+
+                <small id="sideStatus">
+                    OFFLINE
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a class="nav-item active">
+
+                <span>◈</span>
+
+                Mission Control
+
+            </a>
+
+            <a class="nav-item">
+
+                <span>◎</span>
+
+                AI Monitoring
+
+            </a>
+
+            <a class="nav-item">
+
+                <span>▣</span>
+
+                Experiment
+
+            </a>
+
+            <a class="nav-item">
+
+                <span>◌</span>
+
+                Event Logs
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="system-info">
+
+                <span>VERSION</span>
+
+                <strong>2.0.0</strong>
+
+            </div>
+
+            <div class="system-info">
+
+                <span>AI ENGINE</span>
+
+                <strong>YOLO + HAR</strong>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="eyebrow">
+                    SPACE EXPERIMENT MONITORING
+                </span>
+
+                <h2>
+                    Mission Control Center
+                </h2>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <div class="live-indicator">
+
+                    <span class="live-dot"></span>
+
+                    LIVE
+
+                </div>
+
+                <div class="clock" id="clock">
+                    00:00:00
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- HERO STATUS -->
+
+        <section class="hero-grid">
+
+
+            <!-- CAMERA -->
+
+            <div class="panel camera-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            VISUAL FEED
+                        </span>
+
+                        <h3>
+                            Astronaut Camera
+                        </h3>
+
+                    </div>
+
+                    <div class="camera-status">
+
+                        <span></span>
+
+                        CAMERA 01
+
+                    </div>
+
+                </div>
+
+
+                <div class="camera-wrapper">
+
+                    <img
+                        id="cameraFeed"
+                        src="/video_feed"
+                        alt="Live camera"
+                    >
+
+                    <div class="camera-overlay top-left">
+                        CAM-01
+                    </div>
+
+                    <div class="camera-overlay top-right">
+                        AI TRACKING
+                    </div>
+
+                    <div class="camera-overlay bottom-left">
+                        640 × 480
+                    </div>
+
+                    <div class="scan-line"></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- AI ACTIVITY -->
+
+            <div class="panel activity-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            AI ANALYSIS
+                        </span>
+
+                        <h3>
+                            Current Activity
+                        </h3>
+
+                    </div>
+
+                    <div class="ai-chip">
+                        AI
+                    </div>
+
+                </div>
+
+
+                <div class="activity-display">
+
+                    <div class="activity-ring">
+
+                        <div>
+
+                            <span id="activity">
+                                IDLE
+                            </span>
+
+                            <small>
+                                ACTIVITY
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="confidence-block">
+
+                        <div class="confidence-title">
+
+                            <span>
+                                AI CONFIDENCE
+                            </span>
+
+                            <strong id="confidence">
+                                0%
+                            </strong>
+
+                        </div>
+
+                        <div class="confidence-bar">
+
+                            <div
+                                id="confidenceBar"
+                                class="confidence-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="detection-stats">
+
+                    <div>
+
+                        <span>TRACKED</span>
+
+                        <strong id="tracked">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>DETECTIONS</span>
+
+                        <strong id="detections">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>ENGINE</span>
+
+                        <strong>ONLINE</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- EXPERIMENT -->
+
+        <section class="panel experiment-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        ACTIVE EXPERIMENT
+                    </span>
+
+                    <h3 id="experimentName">
+                        Bottle Transfer Experiment
+                    </h3>
+
+                </div>
+
+
+                <div
+                    id="experimentBadge"
+                    class="experiment-badge"
+                >
+                    STANDBY
+                </div>
+
+            </div>
+
+
+            <div class="experiment-progress">
+
+                <div class="progress-info">
+
+                    <span>
+                        EXPERIMENT PROGRESS
+                    </span>
+
+                    <strong id="progress">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                    <div
+                        id="progressBar"
+                        class="progress-fill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="steps">
+
+
+                <div class="step active-step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <span>
+                            CURRENT
+                        </span>
+
+                        <strong id="currentStep">
+                            Waiting
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step-arrow">
+                    →
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <span>
+                            NEXT
+                        </span>
+
+                        <strong id="nextStep">
+                            Waiting
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step-arrow">
+                    →
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <span>
+                            FINAL
+                        </span>
+
+                        <strong>
+                            Complete
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CONTROL + TELEMETRY -->
+
+        <section class="lower-grid">
+
+
+            <!-- CONTROLS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            MISSION CONTROL
+                        </span>
+
+                        <h3>
+                            Experiment Controls
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="control-buttons">
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="startExperiment()"
+                    >
+
+                        <span>▶</span>
+
+                        Start Mission
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="stopExperiment()"
+                    >
+
+                        <span>■</span>
+
+                        Stop Mission
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="resetExperiment()"
+                    >
+
+                        <span>↻</span>
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+
+                <div class="mission-state">
+
+                    <span class="state-dot"></span>
+
+                    <div>
+
+                        <strong id="missionState">
+                            System Ready
+                        </strong>
+
+                        <small>
+                            Waiting for experiment command
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TELEMETRY -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            SYSTEM TELEMETRY
+                        </span>
+
+                        <h3>
+                            Live Status
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="telemetry-grid">
+
+
+                    <div class="telemetry">
+
+                        <span>
+                            CAMERA
+                        </span>
+
+                        <strong id="cameraTelemetry">
+                            OFFLINE
+                        </strong>
+
+                    </div>
+
+
+                    <div class="telemetry">
+
+                        <span>
+                            AI PIPELINE
+                        </span>
+
+                        <strong class="online-text">
+                            READY
+                        </strong>
+
+                    </div>
+
+
+                    <div class="telemetry">
+
+                        <span>
+                            RECORDING
+                        </span>
+
+                        <strong id="recordingTelemetry">
+                            OFF
+                        </strong>
+
+                    </div>
+
+
+                    <div class="telemetry">
+
+                        <span>
+                            ALERTS
+                        </span>
+
+                        <strong id="alertCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ALERTS -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        SAFETY MONITOR
+                    </span>
+
+                    <h3>
+                        Mission Alerts
+                    </h3>
+
+                </div>
+
+                <button
+                    class="clear-btn"
+                    onclick="clearAlerts()"
+                >
+                    CLEAR
+                </button>
+
+            </div>
+
+
+            <div id="alerts" class="alerts-container">
+
+                <div class="empty-state">
+
+                    <span>✓</span>
+
+                    <div>
+
+                        <strong>
+                            No active alerts
+                        </strong>
+
+                        <small>
+                            Mission systems operating normally
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- EVENTS -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        MISSION TIMELINE
+                    </span>
+
+                    <h3>
+                        Event History
+                    </h3>
+
+                </div>
+
+                <span class="event-live">
+                    ● LIVE LOG
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                TIMESTAMP
+                            </th>
+
+                            <th>
+                                EVENT
+                            </th>
+
+                            <th>
+                                ACTIVITY
+                            </th>
+
+                            <th>
+                                CONFIDENCE
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="events">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            <span>
+                SPACEHAR AI MISSION SYSTEM
+            </span>
+
+            <span>
+                EDGE AI • HUMAN ACTIVITY RECOGNITION • EXPERIMENT VALIDATION
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+</body>
+
+</html>

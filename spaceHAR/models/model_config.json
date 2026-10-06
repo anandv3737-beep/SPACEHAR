@@ -1,0 +1,26 @@
+{
+    "model_type": "temporal_har",
+    "status": "prototype",
+    "activities": [
+        "IDLE",
+        "APPROACH",
+        "PICK",
+        "MOVE",
+        "PLACE",
+        "RELEASE"
+    ],
+    "input": {
+        "sequence_length": 15,
+        "features": [
+            "person_bbox",
+            "person_center",
+            "movement",
+            "object_presence",
+            "object_distance"
+        ]
+    },
+    "future_model": {
+        "framework": "ONNX",
+        "status": "planned"
+    }
+}

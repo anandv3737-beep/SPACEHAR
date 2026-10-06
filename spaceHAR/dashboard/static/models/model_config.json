@@ -1,0 +1,14 @@
+{
+    "model_name": "SpaceHAR Temporal HAR",
+    "version": "0.2",
+    "activities": [
+        "IDLE",
+        "APPROACH",
+        "PICK",
+        "MOVE",
+        "PLACE",
+        "RELEASE"
+    ],
+    "input_type": "frame_sequence",
+    "future_model": "trained_har_model"
+}

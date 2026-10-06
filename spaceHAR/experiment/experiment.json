@@ -1,0 +1,21 @@
+{
+    "name": "Bottle Transfer Experiment",
+    "description": "AI monitored bottle transfer sequence for space experiment simulation.",
+    "steps": [
+        {
+            "id": 1,
+            "name": "Pick Object",
+            "activity": "PICK"
+        },
+        {
+            "id": 2,
+            "name": "Move Object",
+            "activity": "MOVE"
+        },
+        {
+            "id": 3,
+            "name": "Place Object",
+            "activity": "PLACE"
+        }
+    ]
+}
